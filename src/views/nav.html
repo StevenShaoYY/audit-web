@@ -1,10 +1,12 @@
-<nav class="clearfix">
-	<ul>
-		<li><a href="#pageA">首页</a></li>
-		<li><a href="#pageB">作业管理</a></li>
-		<li><a href="#pageC">上报统计</a></li>
-		<li><a href="#pageD">可疑行为分析</a></li>
-		<li><a href="#pageE">在线申请</a></li>
-		<li><a href="#pageE">设置</a></li>
-	</ul>
-</nav>
+	<div class="left-menu clearfix" ng-class="{true:'show', false: 'hide'}[mu.isIndex==true]" >
+		<accordion>
+			<ul>
+				<li><a ng-click="mu.hideLeftMenu()" ui-sref="index">首页</a></li>
+			</ul>
+			<expander class='expander' ng-repeat='expander in mu.expanders' expander-title='expander.title'>
+				<li ng-repeat='item in expander.text'>{{item}}</li>
+			</expander>
+		</accordion>	
+	</div>
+
+	<!-- <div>ng-controller='menuController as mu'</div> -->

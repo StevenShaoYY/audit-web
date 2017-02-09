@@ -2,10 +2,11 @@
 export default class httpService{
 	constructor($http){
 		this.http = $http;
+		this.ajaxRoot='/audit-web/actions/secured/';
 	}
 	getData(URL,params){
 		let ajaxObject = {
-			url : URL
+			url : this.ajaxRoot+URL
 		};
 		if(params instanceof Object){
 			ajaxObject.params = params;
@@ -15,7 +16,7 @@ export default class httpService{
 	postData(URL,jsonData){
 		return this.http({
 			method : "post",
-			url : URL,
+			url : this.ajaxRoot+URL,
 			headers : {
 				'Content-Type' : 'application/json'
 			},

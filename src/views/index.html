@@ -2,35 +2,35 @@
 	<section class="head-info clearfix">
 		<div class="index-menu clearfix">
 			<ul>
-				<li><a href="">
+				<li><a ng-click="indexc.hideLeftMenu()" ui-sref="index">
 						<div></div>
 						<p>首页</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" ui-sref="work_manage">
 						<div></div>
 						<p>作业管理</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>上报统计</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>可疑行为分析</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>统计分析</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>查询申请</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>系统日志</p>
 					</a></li>
-				<li><a href="">
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>权限控制</p>
 					</a></li>
@@ -42,7 +42,7 @@
 					<p>接入应用数</p>
 				</div>
 				<div class="index-header-tab-right">
-					<span>1000000</span>
+					<span>{{indexc.indexPara.reg_count}}</span>
 					<div>个</div>
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 					<p>数据总量</p>
 				</div>
 				<div class="index-header-tab-right">
-					<span>923.7</span><div>万条</div>
+					<span>{{indexc.indexPara.total_count}}</span><div>万条</div>
 				</div>
 			</div>
 			<div class="index-header-tab">
@@ -59,7 +59,7 @@
 					<p>24小时新增量</p>
 				</div>
 				<div class="index-header-tab-right">
-					<span>0</span><div>条</div>
+					<span>{{indexc.indexPara.new_count}}</span><div>条</div>
 				</div>
 			</div>
 			<div class="index-header-tab">
@@ -67,7 +67,7 @@
 					<p>本系统目前使用量</p>
 				</div>
 				<div class="index-header-tab-right">
-					<span>3375</span><div>条</div>
+					<span>{{indexc.indexPara.data}}</span><div>条</div>
 				</div>
 			</div>
 		</div>

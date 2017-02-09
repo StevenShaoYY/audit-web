@@ -104,6 +104,13 @@ body {
         width:960px;
         margin:0 auto;
 }
+.footer1{
+  color:#94e9ff;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  line-height: 60px;
+}
 /*header nav user info*/
 header{
   height: 60px;
@@ -115,7 +122,7 @@ header{
   height: 30px;
   float: left;
   margin-top: 15px;
-  margin-left: 60px;
+  margin-left: 260px;
 }
 header h1{
   margin-left: 10px;
@@ -124,11 +131,8 @@ header h1{
   float: left;
   line-height: 30px;
 }
-nav{
-  float: left;
-}
-nav ul li{
-  float: left;
+.main-content{
+  
 }
 .user-info{
   float: right;
@@ -473,4 +477,28 @@ nav ul li{
 }
 .index-content-tab-main-4{
   margin:10px 25px; 
+}
+/*菜单样式*/
+.left-menu{
+  width: 230px;
+  float: left;
+  font-size: 20px;
+}
+.expander>.title{
+  margin-left: 20px;
+  background-color: red;
+}
+.expander>.body{
+  margin-left: 30px;
+  background-color: bule;
+}
+.right-content{
+ 
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  left: 230px;
+  background-color: #fff; 
+  top: 60px;
+ /* margin-left: 230px;*/
 }
