@@ -2,6 +2,7 @@ import index from "../views/index.html"
 import work_manage from "../views/work_manage.html"
 import nav from "../views/nav.html"
 import header from "../views/header.html"
+import header2 from "../views/header2.html"
 import footer from "../views/footer.html"
 import indexController from "../controller/indexController"
 import workManageController from "../controller/indexController"
@@ -39,7 +40,7 @@ function config($stateProvider,$urlRouterProvider){
       url:"/work_manage",
       views: {
         "header": {
-             template:header,
+             template:header2,
              controller:'headerController',
              controllerAs:'header'
         },

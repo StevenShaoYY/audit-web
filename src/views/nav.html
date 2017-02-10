@@ -1,10 +1,19 @@
-	<div class="left-menu clearfix" ng-class="{true:'show', false: 'hide'}[mu.isIndex==true]" >
-		<accordion>
+	<div class="left-menu clearfix">
+		<div class="left-menu-top">
+			<a href=""></a>
+		</div>
+		<accordion class="accordion">
 			<ul>
-				<li><a ng-click="mu.hideLeftMenu()" ui-sref="index">首页</a></li>
+				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>首页</li></a>
+				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>被操作者查询</li></a>
+				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>民警审计查询</li></a>
+				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>终端IP审计查询</li></a>
+				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>作业管理</li></a>
+				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>上报统计</li></a>
+
 			</ul>
 			<expander class='expander' ng-repeat='expander in mu.expanders' expander-title='expander.title'>
-				<li ng-repeat='item in expander.text'>{{item}}</li>
+				<a href="" ng-repeat='item in expander.text'><li>{{item}}</li></a>
 			</expander>
 		</accordion>	
 	</div>

@@ -1,10 +1,11 @@
 import EventBus from 'angular-es-utils/event-bus';
 export default class menuController {
   //构造函数中引入依赖,需加上aaaController.$inject = ['XXX'];
-  constructor(httpService,utils) {
+  constructor($timeout,httpService,utils) {
     this.httpservice = httpService;
     this.ut = utils;
     this.isIndex = false;
+    this.timeout=$timeout;
     this.expanders = [{
       title : '可疑行为分析',
       text : ['单人行为分析','人员匹配查询','开房同住查询统计','档案查询统计','单个受害人分析','受害人批量分析','请求服务信息系统业务分析']
@@ -14,9 +15,6 @@ export default class menuController {
     }, {
       title : '查询申请',
       text : ['申请查询','结果反馈']
-    },{
-      title : '系统配置',
-      text : ['应用列表']
     },
     {
       title : '系统日志',
@@ -25,11 +23,14 @@ export default class menuController {
       title : '权限控制',
       text : ['用户管理','角色管理','用户授权']
     }];
-    this.init()
+    this.init();
+    this.timeout(function(){this._init();}.bind(this),500);
+    
   }
   //controller中的方法
   _init(){
-
+      let windowsHight = document.body.offsetHeight-58;
+      document.getElementsByClassName('accordion')[0].style.cssText ="max-height:"+windowsHight+"px;"
   }
   init(){
     const deregister = EventBus.on('isIndex', (t) => this.isIndex = t);
@@ -39,4 +40,4 @@ export default class menuController {
     this.isIndex = false;
   }
 }
-menuController.$inject = ['httpService','utils'];
+menuController.$inject = ['$timeout','httpService','utils'];

@@ -2,11 +2,19 @@
 	<section class="head-info clearfix">
 		<div class="index-menu clearfix">
 			<ul>
-				<li><a ng-click="indexc.hideLeftMenu()" ui-sref="index">
+				<li><a ng-click="indexc.showLeftMenu()" ui-sref="work_manage">
 						<div></div>
-						<p>首页</p>
+						<p>被操作者查询</p>
 					</a></li>
 				<li><a ng-click="indexc.showLeftMenu()" ui-sref="work_manage">
+						<div></div>
+						<p>民警申请查询</p>
+					</a></li>
+				<li><a ng-click="indexc.showLeftMenu()" href="">
+						<div></div>
+						<p>终端IP审计查询</p>
+					</a></li>
+				<li><a ng-click="indexc.showLeftMenu()" href="">
 						<div></div>
 						<p>作业管理</p>
 					</a></li>
@@ -38,37 +46,45 @@
 		</div>
 		<div class="index-header-tab-container clearfix">
 			<div class="index-header-tab">
-				<div class="index-header-tab-left">
-					<p>接入应用数</p>
-				</div>
-				<div class="index-header-tab-right">
-					<span>{{indexc.indexPara.reg_count}}</span>
-					<div>个</div>
-				</div>
+				<a href="">
+					<div class="index-header-tab-left">
+						<span>接入应用数</span>
+					</div>
+					<div class="index-header-tab-right">
+						<span>{{indexc.indexPara.reg_count}}</span>
+						<div>个</div>
+					</div>
+				</a>
 			</div>
 			<div class="index-header-tab">
-				<div class="index-header-tab-left">
-					<p>数据总量</p>
-				</div>
-				<div class="index-header-tab-right">
-					<span>{{indexc.indexPara.total_count}}</span><div>万条</div>
-				</div>
+				<a href="">
+					<div class="index-header-tab-left">
+						<span>数据总量</span>
+					</div>
+					<div class="index-header-tab-right">
+						<span>{{indexc.indexPara.total_count}}</span><div>万条</div>
+					</div>
+				</a>
 			</div>
 			<div class="index-header-tab">
-				<div class="index-header-tab-left">
-					<p>24小时新增量</p>
-				</div>
-				<div class="index-header-tab-right">
-					<span>{{indexc.indexPara.new_count}}</span><div>条</div>
-				</div>
+				<a href="">
+					<div class="index-header-tab-left">
+						<span>24小时新增量</span>
+					</div>
+					<div class="index-header-tab-right">
+						<span>{{indexc.indexPara.new_count}}</span><div>条</div>
+					</div>
+				</a>
 			</div>
 			<div class="index-header-tab">
-				<div class="index-header-tab-left">
-					<p>本系统目前使用量</p>
-				</div>
-				<div class="index-header-tab-right">
-					<span>{{indexc.indexPara.data}}</span><div>条</div>
-				</div>
+				<a href="">
+					<div class="index-header-tab-left">
+						<span>本系统目前使用量</span>
+					</div>
+					<div class="index-header-tab-right">
+						<span>{{indexc.indexPara.data}}</span><div>条</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</section>

@@ -8,7 +8,7 @@ export default class expander{
 			title : '=expanderTitle'
 		};
 		this.template = '<div>'
-				  + '<div class="title" ng-click="toggle()">{{title}}</div>'
+		+ '<a class="title-a" ng-click="toggle()" href=""><div class="title">{{title}}</div></a>'
 				  + '<div class="body" ng-show="showMe" ng-transclude></div>'
 				  + '</div>';
 		
