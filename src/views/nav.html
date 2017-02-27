@@ -1,15 +1,15 @@
-	<div class="left-menu clearfix">
+	<div ng-if="mu.hideLeftMenuPara==false" class="left-menu clearfix">
 		<div class="left-menu-top">
-			<a href=""></a>
+			<a ng-click="mu.hideLeftMenu()" href=""></a>
 		</div>
 		<accordion class="accordion">
 			<ul>
-				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>首页</li></a>
-				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>被操作者查询</li></a>
-				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>民警审计查询</li></a>
-				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>终端IP审计查询</li></a>
-				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>作业管理</li></a>
-				<a ng-click="mu.hideLeftMenu()" ui-sref="index"><li>上报统计</li></a>
+				<a ui-sref="index"><li>首页</li></a>
+				<a ui-sref="operatored_search"><li>档案查询申请</li></a>
+				<a ui-sref="operatored_search"><li>警员审计档案</li></a>
+				<a ui-sref="operatored_search"><li>IP地址审计档案</li></a>
+				<a ui-sref="work_manage"><li>作业管理</li></a>
+				<a ui-sref="report_stat"><li>上报统计</li></a>
 
 			</ul>
 			<expander class='expander' ng-repeat='expander in mu.expanders' expander-title='expander.title'>
@@ -19,3 +19,127 @@
 	</div>
 
 	<!-- <div>ng-controller='menuController as mu'</div> -->
+	<div ng-if="mu.hideLeftMenuPara==true" class="left-menu2 clearfix">
+		<div class="left-menu-top2">
+			<a ng-click="mu.hideLeftMenu()" href=""></a>
+		</div>
+		<ul>
+			<a ui-sref="index"><li></li></a>
+			<ul>
+				<a ui-sref="index">
+					<li>首页</li>
+				</a>
+			</ul>
+			<a ui-sref="operatored_search"><li></li></a>
+			<ul>
+				<a ui-sref="operatored_search">
+					<li>被操作者查询</li>
+				</a>
+			</ul>
+			<a ui-sref="operatored_search"><li></li></a>
+			<ul>
+				<a href="">
+					<li>民警审计查询</li>
+				</a>
+			</ul>
+			<a ui-sref="operatored_search"><li></li></a>
+			<ul>
+				<a href="">
+					<li>终端IP审计查询</li>
+				</a>
+			</ul>
+			<a ui-sref="work_manage"><li></li></a>
+			<ul>
+				<a ui-sref="work_manage">
+					<li>作业管理</li>
+				</a>
+			</ul>
+			<a ui-sref="report_stat"><li></li></a>
+			<ul>
+				<a ui-sref="report_stat">
+					<li>上报统计</li>
+				</a>
+			</ul>
+			<a ui-sref="work_manage"><li></li></a>
+			<ul>
+				<a href="">
+					<li>单人行为分析</li>
+				</a>
+				<a href="">
+					<li>人员匹配查询</li>
+				</a>
+				<a href="">
+					<li>开房同住查询统计</li>
+				</a>
+				<a href="">
+					<li>档案查询统计</li>
+				</a>
+				<a href="">
+					<li>单个受害人分析</li>
+				</a>
+				<a href="">
+					<li>受害人批量分析</li>
+				</a>
+				<a href="">
+					<li>请求服务信息系统业务分析</li>
+				</a>
+			</ul>
+			<a ui-sref="operatored_search"><li></li></a>
+			<ul>
+				<a href="">
+					<li>业务部门查询者排名</li>
+				</a>
+				<a href="">
+					<li>查询者排名</li>
+				</a>
+				<a href="">
+					<li>被查询者排名</li>
+				</a>
+				<a href="">
+					<li>组织机构查询排名</li>
+				</a>
+				<a href="">
+					<li>模块查询者排名</li>
+				</a>
+				<a href="">
+					<li>模块查询统计</li>
+				</a>
+				<a href="">
+					<li>查询人数统计</li>
+				</a>
+			</ul>
+			<a ui-sref="work_manage"><li></li></a>
+			<ul>
+				<a href="">
+					<li>申请查询</li>
+				</a>
+				<a href="">
+					<li>结果反馈</li>
+				</a>
+			</ul>
+			<a ui-sref="operatored_search"><li></li></a>
+			<ul>
+				<a href="">
+					<li>日志查询</li>
+				</a>
+				<a href="">
+					<li>使用量统计</li>
+				</a>
+				<a href="">
+					<li>数据同步异常</li>
+				</a>
+			</ul>
+			<a ui-sref="operatored_search"><li></li></a>
+			<ul>
+				<a href="">
+					<li>用户管理</li>
+				</a>
+				<a href="">
+					<li>角色管理</li>
+				</a>
+				<a href="">
+					<li>用户授权</li>
+				</a>
+			</ul>
+		</ul>
+	</div>

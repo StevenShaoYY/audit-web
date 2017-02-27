@@ -1,8 +1,9 @@
 import EventBus from 'angular-es-utils/event-bus';
 export default class menuController {
   //构造函数中引入依赖,需加上aaaController.$inject = ['XXX'];
-  constructor($timeout,httpService,utils) {
+  constructor($interval,$timeout,httpService,utils) {
     this.httpservice = httpService;
+    this.interval = $interval;
     this.ut = utils;
     this.isIndex = false;
     this.timeout=$timeout;
@@ -25,6 +26,7 @@ export default class menuController {
     }];
     this.init();
     this.timeout(function(){this._init();}.bind(this),500);
+    this.hideLeftMenuPara=false;
     
   }
   //controller中的方法
@@ -34,10 +36,37 @@ export default class menuController {
   }
   init(){
     const deregister = EventBus.on('isIndex', (t) => this.isIndex = t);
-    console.log(this.isIndex);
   }
   hideLeftMenu(){
-    this.isIndex = false;
+   
+    if(this.hideLeftMenuPara==false){
+      let temp = 230;
+      let hide = this.interval(function(){
+        if(temp>80){
+          temp = temp-10;
+        }else{
+          this.interval.cancel(hide);
+        }
+        document.getElementsByClassName('right-content')[0].style.cssText ="left:"+temp+"px";
+        document.getElementsByClassName('header2')[0].style.cssText ="margin-left:"+temp+"px";
+      }.bind(this),10)
+      
+    }else{
+      let temp = 80;
+      let show = this.interval(function(){
+        if(temp<230){
+          temp = temp+10;
+        }else{
+          this.interval.cancel(show);
+        }
+        document.getElementsByClassName('right-content')[0].style.cssText ="left:"+temp+"px";
+        document.getElementsByClassName('header2')[0].style.cssText ="margin-left:"+temp+"px";
+      }.bind(this),10)
+      // document.getElementsByClassName('right-content')[0].style.cssText ="left:230px";
+      // document.getElementsByClassName('header2')[0].style.cssText ="margin-left:230px";
+    }
+    this.hideLeftMenuPara=!this.hideLeftMenuPara;
   }
+
 }
-menuController.$inject = ['$timeout','httpService','utils'];
+menuController.$inject = ['$interval','$timeout','httpService','utils'];

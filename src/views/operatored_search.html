@@ -1,0 +1,238 @@
+<div class="right-content clearfix">
+	<div class="work-top-div">
+		<h2>档案查询申请</h2>
+		<div class="work-search-bar-div">
+			<md-input-container class="os-input-1">
+          		<label>--请选择申请状态--</label>
+          		<md-select ng-model="os.applyStateResult">
+            		<md-option ng-repeat="state in os.applyState" ng-value="state.applyStateName">
+              			{{state.applyStateName}}
+            		</md-option>
+          		</md-select>
+        	</md-input-container>
+        	<md-input-container class="os-input-4">
+          		<label>申请编号</label>
+          		<input ng-model="os.applyId" md-placeholder="开始时间"></input>
+      		</md-input-container>
+			<span class="os-span-2">申请时间</span>
+        	<md-input-container class="os-input-2">
+          		<label>开始时间</label>
+          		<md-datepicker ng-model="os.startDate"  md-max-date="os.endDate" md-placeholder="开始时间"></md-datepicker>
+      		</md-input-container>
+      		<md-input-container class="os-input-3">
+          		<label>结束时间</label>
+          		<md-datepicker  ng-model="os.endDate"
+          		md-min-date="os.startDate"
+          		md-hide-icons="calendar"
+          		 md-placeholder="结束时间"></md-datepicker>
+      		</md-input-container>
+        
+        	<md-button class="md-raised  os-button1 md-warn"  ng-click="os.searchClick()">筛选</md-button>
+        
+		</div>
+	</div>
+	<div class="main-content operatored-main-content">
+		<md-button class="md-raised wm-add-button" ng-click="os.showDialog($event)" >申请</md-button>
+		<table show-filter="true" class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="text-center">申请编号</th>
+					<th class="text-center">申请日期</th>
+					<th class="text-center">申请单位</th>
+					<th class="text-center">承办单位</th>
+					<th class="text-center">搜索来源</th>
+					<th class="text-center">查询事由</th>
+					<th class="text-center">查看详情</th>
+					<th class="text-center">反馈</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="odd" ng-if="os.searchReturnData.length==0">
+					<td valign="top" colspan="10" class="text-center">没有检索到有效数据！</td>
+				</tr>
+				<tr ng-if="os.searchReturnData.length>0" ng-repeat="result in os.searchReturnData">
+			        <td class="text-center" title={{result.APPLY_ID}}>
+			            {{result.APPLY_ID}}
+			        </td>
+			        <td class="col-md-1 text-center" title={{result.APPLY_TIME}}>
+			            {{result.APPLY_TIME}}
+			        </td>
+			        <td class="text-center" title={{result.APPLY_DEPART_NAME}}>
+			            {{result.APPLY_DEPART_NAME}}
+			        </td>
+			        <td class="text-center" title={{result.ORGANIZER_DEPART_NAME}}>
+			            {{result.ORGANIZER_DEPART_NAME}}
+			        </td>
+			        <td class="text-center" title={{result.CLUE_RESOURCE}} >
+			            {{result.CLUE_RESOURCE}}
+			        </td>
+			        <td class="text-center" title={{result.SELECT_REASON}}>
+			            {{result.SELECT_REASON}}
+			        </td>
+			        <td class="text-center">
+			            <a href="" ng-click="os.watchByApplyId(result.APPLY_ID)">查看</a>
+			        </td>
+			        <td class="text-center">
+			           <a ng-if="result.STATUS == '已申请' " href="" ng-click="os.reply(result.APPLY_ID,$event)">反馈</a>
+			           <a ng-if="result.STATUS == '已反馈' " class="red">已反馈</a>
+			        </td>
+		    	</tr>
+			</tbody>
+		</table>
+		<div class="wc-pagination"><pagination conf="os.paginationConf"><pagination></div>
+		
+	</div>
+</div>
+  
+<div style="visibility: hidden">
+<div class="md-dialog-container" id="myDialog">
+<md-dialog >
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>审计记录查询申请表</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="os.cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" ></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+    <div class="apply-table-header">
+      <h1>浙江公安信息系统应用日志安全审计记录查询申请表</h1>
+    </div>
+    <div class="apply-table-main">
+      <div class="clearfix">
+        <div class="apply-table-sub-title">浙江省公安厅科技信息化局信息与网络安全科</div>
+        <div class="apply-table-time"><span>申请日期：</span>2017年02月23日</div>
+      </div>
+    
+    <table border="1">
+    <form name="myForm">
+        <tr>
+          <th><span class="red">*</span>申请单位和部门名称
+          </th>
+          <td>
+            <input type="text" ng-model="os.watchByApplyIdData.APPLY_DEPART_NAME" value='{{os.watchByApplyIdData.APPLY_DEPART_NAME}}' disabled>
+            
+          </td>
+          <th>承办单位</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.ORGANIZER_DEPART_NAME" disabled></td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>申请单位联系人</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.APPLY_CONTACT_NAME" required name="APPLY_CONTACT_NAME" disabled></td>
+          <th>承办单位联系人</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.ORGANIZER_CONTACT_NAME" disabled></td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>申请单位联系人电话</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.APPLY_CONTACT_TEL" required name="APPLY_CONTACT_TEL" disabled></td>
+          <th>承办单位联系人电话</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.ORGANIZER_CONTACT_TEL" disabled></td>
+        </tr>
+        <tr>
+          <th>申请单位邮箱</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.APPLY_EMAIL" disabled></td>
+          <th>承办单位邮箱</th>
+          <td><input type="text" ng-model="os.watchByApplyIdData.ORGANIZER_EMAIL" disabled></td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>线索来源渠道
+          <td colspan="3">
+         		<input type="text" ng-model="os.watchByApplyIdData.CLUE_RESOURCE" disabled>
+          </td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>查询事由和原因</th>
+          <td colspan="3">
+            <textarea name="" id="" cols="70" rows="8"  ng-model="os.watchByApplyIdData.SELECT_REASON" required name="SELECT_REASON" disabled></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>
+            <md-input-container class="apply-table-md-input1">
+                <label>--查询条件--</label>
+                <md-select ng-model="os.searchResult" disabled>
+                  <md-option ng-repeat="search in os.searchOption" ng-value="search.searchName">
+                      {{search.searchName}}
+                  </md-option>
+                </md-select>
+            </md-input-container>
+            <p class="apply-table-p-1"> — —{{os.searchResult}}— —</p>
+          </th>
+          <td colspan="3">
+            <textarea name="" id="" cols="70" rows="1" placeholder="请输入{{os.searchResult}}" required name="SELECT_REASON2" disabled></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>附件
+          <p class="apply-table-p-2">(多个扫描件请打包压缩)</p>
+          </th>
+          <td colspan="3">
+             <a href="javascript:;" class="file">上传附件
+                <input disabled type="file" name="" id="" required name="file">
+            </a>
+          </td>
+        </tr>
+    </form>
+    </table>
+    
+    </div>
+       
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="os.cancel()">
+      确定
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</div>
+</div>
+
+<div style="visibility: hidden">
+<div class="md-dialog-container" id="reply">
+<md-dialog >
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>审计记录反馈表</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="os.cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" ></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+		<div class="reply-table-main">  
+		    <table border="1">
+		    <form name="myForm">
+		        <tr>
+		          <th><span class="red">*</span>查询事由和原因</th>
+		          <td colspan="3">
+		            <textarea name="" id="" cols="70" rows="5" ng-model="os.replayTableContent"  required name="SELECT_REASON"></textarea>
+		          </td>
+		        </tr>
+		    </form>
+		    </table>
+	    </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button type="submit" ng-click="os.saveReplayTable()" id="ok" >
+      	保存
+      </md-button>
+      <md-button ng-click="os.cancel()">
+      	取消
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</div>
+</div>

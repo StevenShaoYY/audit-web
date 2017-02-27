@@ -2,11 +2,12 @@ import EventBus from 'angular-es-utils/event-bus';
 
 export default class pageAController {
   //构造函数中引入依赖,需加上aaaController.$inject = ['XXX'];
-  constructor($timeout,httpService,utils) {
+  constructor($timeout,httpService,utils,dialog) {
     this.url = 'https://github.com/preboot/angular-webpack';
     this.httpservice = httpService;
     this.ut = utils;
     this.timeout = $timeout;
+    this.dialog = dialog;
     this.indexPara={};
     this.init();
 
@@ -77,16 +78,15 @@ export default class pageAController {
          
        } 
 		}.bind(this),function onError(response){
-      console.log(this);
+      this.dialog.sysAlert();
     }.bind(this));
     this.httpservice.getData("operatelog/todaycountinfo").then(
       function onSuccess(response) {
        if (response.data.success) {
-         this.indexPara.new_count = response.data.data.new_count;
-         
+         this.indexPara.new_count = response.data.data.new_count; 
        } 
     }.bind(this),function onError(response){
-      console.log(this);
+       this.dialog.sysAlert();
     }.bind(this));
     this.httpservice.getData("sys/operatelog/current/used").then(
       function onSuccess(response) {
@@ -95,10 +95,9 @@ export default class pageAController {
           this.timeout(function() {
               this._init();
             }.bind(this), 1);
-         
       } 
     }.bind(this),function onError(response){
-      console.log(this);
+       this.dialog.sysAlert();
     }.bind(this));
   }
   showLeftMenu(){
@@ -108,4 +107,4 @@ export default class pageAController {
     EventBus.dispatch('isIndex', false);
   }
 }
-pageAController.$inject = ['$timeout','httpService','utils'];
+pageAController.$inject = ['$timeout','httpService','utils','dialog'];

@@ -2,6 +2,10 @@ export default class utilsService{
 	constructor(){
 		this._userAgent = window.navigator.userAgent.toLowerCase();
 	}
+	
+
+
+
 	/**
 	 * 获取url中"?"符后的字串
 	 * @return {map}

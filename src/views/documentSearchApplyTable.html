@@ -1,0 +1,114 @@
+﻿<md-dialog >
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>审计记录查询申请表</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="os.cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" ></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+    <div class="apply-table-header">
+      <h1>浙江公安信息系统应用日志安全审计记录查询申请表</h1>
+    </div>
+    <div class="apply-table-main">
+      <div class="clearfix">
+        <div class="apply-table-sub-title">浙江省公安厅科技信息化局信息与网络安全科</div>
+        <div class="apply-table-time"><span>申请日期：</span>2017年02月23日</div>
+      </div>
+    
+    <table border="1">
+    <form name="myForm">
+        <tr>
+          <th><span class="red">*</span>申请单位和部门名称
+          </th>
+          <td>
+            <input type="text" ng-model="os.applyData.APPLY_DEPART_NAME" required name="APPLY_DEPART_NAME"> 
+            
+          </td>
+          <th>承办单位</th>
+          <td><input type="text" ng-model="os.applyData.ORGANIZER_DEPART_NAME"></td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>申请单位联系人</th>
+          <td><input type="text" ng-model="os.applyData.APPLY_CONTACT_NAME" required name="APPLY_CONTACT_NAME"></td>
+          <th>承办单位联系人</th>
+          <td><input type="text" ng-model="os.applyData.ORGANIZER_CONTACT_NAME"></td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>申请单位联系人电话</th>
+          <td><input type="text" ng-model="os.applyData.APPLY_CONTACT_TEL" required name="APPLY_CONTACT_TEL"></td>
+          <th>承办单位联系人电话</th>
+          <td><input type="text" ng-model="os.applyData.ORGANIZER_CONTACT_TEL"></td>
+        </tr>
+        <tr>
+          <th>申请单位邮箱</th>
+          <td><input type="text" ng-model="os.applyData.APPLY_EMAIL"></td>
+          <th>承办单位邮箱</th>
+          <td><input type="text" ng-model="os.applyData.ORGANIZER_EMAIL"></td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>线索来源渠道
+          <p class="red validateFontsize">{{os.validateXiansuoFrom}}</p></th>
+          <td colspan="3">
+          <input class="apply-table-checkbox" value="0" ng-model="os.xiansuoFrom.a.status" ng-change="os.aaa(os.xiansuoFrom.a)" type="checkbox">报警
+          <input class="apply-table-checkbox" value="1" ng-model="os.xiansuoFrom.b.status" ng-change="os.aaa(os.xiansuoFrom.b)" type="checkbox">信访
+          <input class="apply-table-checkbox" value="2" ng-model="os.xiansuoFrom.c.status" ng-change="os.aaa(os.xiansuoFrom.c)" type="checkbox">督查
+          <input class="apply-table-checkbox" value="3" ng-model="os.xiansuoFrom.d.status" ng-change="os.aaa(os.xiansuoFrom.d)" type="checkbox">纪委
+          <input class="apply-table-checkbox" value="4" ng-model="os.xiansuoFrom.e.status" ng-change="os.aaa(os.xiansuoFrom.e)" type="checkbox">互联网
+          <input class="apply-table-checkbox" value="5" ng-model="os.xiansuoFrom.f.status" ng-change="os.aaa(os.xiansuoFrom.f)" type="checkbox">其他<input class="apply-table-input1"  ng-model="os.others" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>查询事由和原因</th>
+          <td colspan="3">
+            <textarea name="" id="" cols="70" rows="8"  ng-model="os.applyData.SELECT_REASON" required name="SELECT_REASON"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>
+            <md-input-container class="apply-table-md-input1">
+                <label>--查询条件--</label>
+                <md-select ng-model="os.searchResult">
+                  <md-option ng-repeat="search in os.searchOption" ng-value="search.searchName">
+                      {{search.searchName}}
+                  </md-option>
+                </md-select>
+            </md-input-container>
+            <p class="apply-table-p-1"> — —{{os.searchResult}}— —</p>
+          </th>
+          <td colspan="3">
+            <textarea name="" id="" cols="70" rows="1" placeholder="请输入{{os.searchResult}}" required name="SELECT_REASON2"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th><span class="red">*</span>附件
+          <p class="apply-table-p-2">(多个扫描件请打包压缩)</p>
+          </th>
+          <td colspan="3">
+             <a href="javascript:;" class="file">上传附件
+                <input type="file" name="" id="" required name="file">
+            </a>
+          </td>
+        </tr>
+    </form>
+    </table>
+    
+    </div>
+       
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button type="submit" ng-click="os.saveApplyTable()" id="ok" >
+      保存
+      </md-button>
+      <md-button ng-click="os.cancel()">
+      取消
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

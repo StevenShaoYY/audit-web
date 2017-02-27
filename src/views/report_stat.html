@@ -1,39 +1,34 @@
 <div class="right-content clearfix">
 	<div class="work-top-div">
-		<h2>作业管理</h2>
+		<h2>上报统计</h2>
 		<div class="work-search-bar-div">
-			<md-input-container class="work-input-1">
-          		<label>作业状态</label>
-          		<md-select ng-model="wc.wkState">
-            		<md-option ng-repeat="state in wc.wkStates" ng-value="state">
-              			{{state}}
-            		</md-option>
-          		</md-select>
-        	</md-input-container>
-        	<md-input-container class="work-input-2">
+			<span class="top-span-rc">作业创建时间段</span>
+        	<md-input-container class="rc-input-2">
           		<label>开始时间</label>
-          		<md-datepicker ng-model="wc.startDate"  md-max-date="wc.endDate"md-placeholder="开始时间"></md-datepicker>
+          		<md-datepicker ng-model="rc.startDate"  md-max-date="rc.endDate" md-placeholder="开始时间"></md-datepicker>
       		</md-input-container>
-      		<md-input-container class="work-input-3">
+      		<md-input-container class="rc-input-3">
           		<label>结束时间</label>
-          		<md-datepicker  ng-model="wc.endDate"
-          		md-min-date="wc.startDate"
+          		<md-datepicker  ng-model="rc.endDate"
+          		md-min-date="rc.startDate"
           		md-hide-icons="calendar"
           		 md-placeholder="结束时间"></md-datepicker>
       		</md-input-container>
-      		<md-button class="md-raised  work-search-button md-warn" ng-click="wc.clickSearchData()" >查询</md-button>
-      		<!-- <button class="">查询</button> -->
-        	<md-input-container class="work-input-4">
-          		<label>刷新频率</label>
-          		<md-select ng-model="wc.freshTime">
-            		<md-option ng-repeat="state in wc.freshTimes" ng-value="state">
-              			{{state}}
+      		<md-button class="md-raised  rc-button1 md-warn" ng-click="rc.getTasks()" >确定</md-button>
+        	<md-input-container class="rc-input-4">
+          		<label>--请选择作业--</label>
+          		<md-select ng-model="rc.taskId">
+            		<md-option ng-repeat="task in rc.tasks" ng-value="task.id">
+              			{{task.time+' '+task.title}}
             		</md-option>
           		</md-select>
         	</md-input-container>
+        	<md-button class="md-raised  rc-button2 md-warn" ng-click="rc.search()" >查看</md-button>
+        	<md-button class="md-raised  rc-button3 md-warn" ng-click="" >管理</md-button>
+        	<md-button class="md-raised  rc-button4 md-warn" ng-click="" >导出</md-button>
 		</div>
 	</div>
-	<div class="work-main-content main-content">
+	<div class="work-main-content">
 		<md-button class="md-raised wm-add-button"  >添加</md-button>
 		<table show-filter="true" class="table table-bordered">
 			<thead>
@@ -69,7 +64,7 @@
 			        <td class="text-center" ng-class="{true:'fail',false:''}[result.successName=='失败']">
 			            {{result.successName}}
 			        </td>
-			        <td class="text-center" title={{result.paramMap}}>
+			        <td class="text-center" >
 			            {{result.paramMap}}
 			        </td>
 			        <td class="text-center">
@@ -92,7 +87,7 @@
 		    	</tr>
 			</tbody>
 		</table>
-		<div class="wc-pagination"><pagination conf="wc.paginationConf"><pagination></div>
+		<!-- <div class="wc-pagination"><pagination conf="wc.paginationConf"><pagination></div> -->
 		
 	</div>
 </div>
